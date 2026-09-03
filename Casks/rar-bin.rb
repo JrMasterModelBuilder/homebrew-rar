@@ -1,4 +1,4 @@
-cask "rar" do
+cask "rar-bin" do
   arch arm: "arm", intel: "x64"
   os macos: "macos", linux: "linux"
 
@@ -16,6 +16,8 @@ cask "rar" do
   on_linux do
     depends_on arch: :x86_64
   end
+
+  conflicts_with "rar", because: "homebrew version"
 
   binary "rar/rar"
   binary "rar/unrar"
