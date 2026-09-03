@@ -16,9 +16,3 @@ brew trust JrMasterModelBuilder/rar
 ```sh
 brew install rar-bin
 ```
-
-## Install
-
-```sh
-brew install rar-bin
-```
