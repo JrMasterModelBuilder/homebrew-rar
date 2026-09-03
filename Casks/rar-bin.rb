@@ -12,6 +12,11 @@ cask "rar-bin" do
   desc "Archive manager for data compression and backups"
   homepage "https://www.rarlab.com/"
 
+  livecheck do
+    url "https://www.rarlab.com/download.htm"
+    regex(/>\s*RAR\s+for\s+(?:macOS|Linux).*?v?(\d+(:?\.\d+)+)\s*</i)
+  end
+
   on_linux do
     depends_on arch: :x86_64
   end
