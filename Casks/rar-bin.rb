@@ -16,6 +16,14 @@ cask "rar-bin" do
     depends_on arch: :x86_64
   end
 
+  on_macos do
+    preflight do
+      system_command "/usr/bin/xattr",
+                     args: ["-dr", "com.apple.quarantine", staged_path],
+                     must_succeed: false
+    end
+  end
+
   binary "rar/rar"
   binary "rar/unrar"
   artifact "rar/default.sfx", target: "#{HOMEBREW_PREFIX}/lib/default.sfx"
