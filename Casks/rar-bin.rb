@@ -8,7 +8,6 @@ cask "rar-bin" do
          x86_64_linux: "759b4b6aa0d9f77131882162951193f3a0e54bf60e1d8dc4255aa308accab588"
 
   url "https://www.rarlab.com/rar/rar#{os}-#{arch}-#{version.no_dots}.tar.gz"
-
   name "RAR Archiver"
   desc "Archive manager for data compression and backups"
   homepage "https://www.rarlab.com/"
@@ -16,8 +15,6 @@ cask "rar-bin" do
   on_linux do
     depends_on arch: :x86_64
   end
-
-  conflicts_with "rar", because: "homebrew version"
 
   binary "rar/rar"
   binary "rar/unrar"
