@@ -1,0 +1,31 @@
+name: Latest
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  test:
+    if: github.repository == 'JrMasterModelBuilder/homebrew-rar'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      actions: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Homebrew
+        uses: Homebrew/actions/setup-homebrew@3cdb78d0f62ad29dd32de765782654f4eedea607 # 2026.08.31.1
+
+      - name: Check Latest
+        run: test "$(brew livecheck --newer-only --json rar-bin | tee /dev/stderr)" '==' '[]'
+
+      - name: Keep Alive
+        uses: liskin/gh-workflow-keepalive@f72ff1a1336129f29bf0166c0fd0ca6cf1bcb38c # v1.2.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ !cancelled() }}
