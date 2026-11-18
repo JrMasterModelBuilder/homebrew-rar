@@ -21,11 +21,11 @@ cask "rar-bin" do
     depends_on arch: :x86_64
   end
 
-  on_macos do
-    preflight do
-      system_command "/usr/bin/xattr",
-                     args: ["-dr", "com.apple.quarantine", staged_path],
-                     must_succeed: false
+  preflight_steps do
+    on_macos do
+      run "/usr/bin/xattr",
+          args: ["-dr", "com.apple.quarantine", "{{staged_path}}"],
+          must_succeed: false
     end
   end
 
