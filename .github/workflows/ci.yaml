@@ -42,7 +42,7 @@ jobs:
         run: brew info "${{ matrix.name }}"
 
       - name: Install
-        run: brew install -v --cask "${{ matrix.name }}"
+        run: brew install --verbose --cask "${{ matrix.name }}"
 
       - name: Installed
         run: brew info "${{ matrix.name }}"
